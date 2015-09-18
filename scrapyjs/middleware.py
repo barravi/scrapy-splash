@@ -100,7 +100,8 @@ class SplashMiddleware(object):
         splash_base_url = splash_options.get('splash_url', self.splash_base_url)
         splash_url = urljoin(splash_base_url, endpoint)
 
-        req_rep = request.replace(
+        #req_rep = request.replace(
+        request = request.replace(
             url=splash_url,
             method='POST',
             body=body,
@@ -111,7 +112,7 @@ class SplashMiddleware(object):
         )
 
         self.crawler.stats.inc_value('splash/%s/request_count' % endpoint)
-        return req_rep
+        #return req_rep
 
     def process_response(self, request, response, spider):
         splash_options = request.meta.get("_splash_processed")
